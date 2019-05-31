@@ -5,6 +5,7 @@ import (
 	"github.com/kataras/iris/core/errors"
 	"goIM/model"
 	"goIM/util"
+	"log"
 	"math/rand"
 	"time"
 )
@@ -45,4 +46,32 @@ func (s *UserService) Register(
 	_, err = DBEngin.InsertOne(&tmp)
 
 	return tmp, err
+}
+
+func (s *UserService) Login(
+	mobile,
+	plainwd string) (user model.User, err error) {
+	//首先通过手机号查询用户
+	tmp := model.User{}
+	DBEngin.Where("mobile=? ", mobile).Get(&tmp)
+	// 如果没有找到
+	if tmp.Id == 0 {
+		return tmp, errors.New("该用户不存在")
+	}
+	// 查询完成比对密码
+	if !util.ValidatePasswd(plainwd, tmp.Salt, tmp.Passwd) {
+		return tmp, errors.New("密码不正确")
+	}
+	//比对密码是否正确
+	str := fmt.Sprintf("%d", time.Now().Unix())
+	token := util.MD5Encode(str)
+	//刷新token，保证安全性
+	tmp.Token = token
+	// 返回数据
+	_, err = DBEngin.ID(tmp.Id).Cols("token").Update(&tmp)
+	if err != nil {
+		log.Println("[FAIL] DBEngin.ID(tmp.Id).Cols(\"token\").Update(&tmp)")
+	}
+
+	return tmp, nil
 }
