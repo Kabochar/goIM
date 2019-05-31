@@ -3,7 +3,7 @@
 
     function upload(dom){
         uploadfile("attach/upload",dom,function(res){
-            if(res.code==200){
+            if(res.code==0){
                 app.sendpicmsg(res.data)
             }
 
@@ -96,6 +96,7 @@
                     allChunks:[],
                     iscomplete:false,
                     duration:0,
+                    showprocess:false,
                 },
                 created:function(){
                     this.loadfriends();
@@ -138,30 +139,39 @@
                             mui.toast("编码不支持")
                             return ;
                         }
+
                         this.duration = new Date().getTime();
                         navigator.mediaDevices.getUserMedia({audio: true, video: false})
-                                .then((stream) => {
+                                .then(function(stream){
+                                    this.showprocess = true
                                     this.recorder = new MediaRecorder(stream);
                                     audioTarget.srcObject = stream;
 
                                     this.recorder.ondataavailable = (event) => {
-                                        console.log("ondataavailable",event);
-                                        uploadblob("attach/upload",event.data,res=>{
+                                        console.log("ondataavailable");
+                                        uploadblob("attach/upload",event.data,".mp3",res=>{
                                             var duration = Math.ceil((new Date().getTime()-this.duration)/1000);
                                             this.sendaudiomsg(res.data,duration);
-                                            console.log("attach/upload",res.data)
                                         })
+                                        stream.getTracks().forEach(function (track) {
+                                            track.stop();
+                                        });
+                                        this.showprocess = false
                                     }
                                     this.recorder.start();
-                                }).catch(function(err){
-                            mui.toast(err.msg)
-                        });
+                                }.bind(this)).
+                        catch(function(err){
+                            console.log(err)
+                            mui.toast(err)
+                            this.showprocess = false
+                        }.bind(this));
                     },
                     stoprecorder :function() {
                         if(typeof this.recorder.stop=="function"){
                             this.recorder.stop();
                         }
-
+                        this.showprocess = false
+                        console.log("stoprecorder")
 
                     },
                     dispatchplugin:function(item){
@@ -190,7 +200,7 @@
                         }
                         var that = this;
                         for(var id in res){
-                            console.log("res[i]",id,res[id])
+                            //console.log("res[i]",id,res[id])
                             post(res[id],{},function(pkginfo){
                                 //console.log("post res[i]",id,res[id],pkginfo)
                                 var baseurl= config.baseurl+"/"+pkginfo.id+"/"
@@ -214,7 +224,7 @@
 
                         }
                         data.ismine = userId()==msg.userid;
-                        console.log(data.ismine,userId(),msg.userid)
+                        //console.log(data.ismine,userId(),msg.userid)
                         data.user = user;
                         data.msg = msg;
                         this.msglist = this.msglist.concat(data)
@@ -252,11 +262,11 @@
                         msg.url=url;
                         msg.amount = num;
                         this.showmsg(userInfo(),msg)
-                        console.log("sendaudiomsg",this.msglist);
+                        //console.log("sendaudiomsg",this.msglist);
                         this.webSocket.send(JSON.stringify(msg))
                     },
                     singlemsg:function(user){
-                        console.log(user)
+                        //console.log(user)
                         this.win = "single";
                         this.title = "和"+user.nickname+"聊天中";
                         this.msgcontext.dstid = parseInt(user.id);
@@ -363,8 +373,8 @@
                     },
                     _joincomunity:function(dstobj){
                         var that = this;
-                        post("contact/joincommunity",{dstid:dstobj},function(res){
-                            if(res.code==200){
+                        post("contact/joincommunity",{dstid:dstobj,"userid":userId()},function(res){
+                            if(res.code==0){
                                 mui.toast("添加成功");
 
                                 that.loadcommunitys();
@@ -399,7 +409,7 @@
                 },
                 watch:{
                     "win":function(n,o){
-                        console.log("watch",o,n)
+                       // console.log("watch",o,n)
                         if(n!="main"){
                             document.getElementById("menubar").style.display="none";
                         }else{

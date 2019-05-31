@@ -2,16 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d44dcc78-d371-4a02-a186-78e3d6f81e91" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ctrl/attach.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/view/chat/createcom.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ctrl/chat.go" beforeDir="false" afterPath="$PROJECT_DIR$/ctrl/chat.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ctrl/user.go" beforeDir="false" afterPath="$PROJECT_DIR$/ctrl/user.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/contact.go" beforeDir="false" afterPath="$PROJECT_DIR$/service/contact.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/init.go" beforeDir="false" afterPath="$PROJECT_DIR$/service/init.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/user.go" beforeDir="false" afterPath="$PROJECT_DIR$/service/user.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/main.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/view/chat/foot.html" beforeDir="false" afterPath="$PROJECT_DIR$/view/chat/foot.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/view/chat/group.html" beforeDir="false" afterPath="$PROJECT_DIR$/view/chat/group.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/view/chat/head.html" beforeDir="false" afterPath="$PROJECT_DIR$/view/chat/head.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/view/chat/main.html" beforeDir="false" afterPath="$PROJECT_DIR$/view/chat/main.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/view/user/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/view/user/login.html" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -23,32 +21,7 @@
     <favorites_list name="goIM" />
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/service/user.go">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="238">
-              <caret line="10" column="1" lean-forward="true" selection-start-line="10" selection-start-column="1" selection-end-line="10" selection-end-column="1" />
-              <folding>
-                <element signature="e#17#94#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/ctrl/chat.go">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="245">
-              <caret line="143" lean-forward="true" selection-start-line="143" selection-end-line="143" />
-              <folding>
-                <element signature="e#14#143#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300" />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -66,6 +39,8 @@
       <find>initwebsocket</find>
       <find>sendtxtmsg</find>
       <find>sendmsg</find>
+      <find>upload</find>
+      <find>upload(dom)</find>
     </findStrings>
   </component>
   <component name="GOROOT" path="C:\Go" />
@@ -92,7 +67,6 @@
         <option value="$PROJECT_DIR$/util/resp.go" />
         <option value="$PROJECT_DIR$/model/contact.go" />
         <option value="$USER_HOME$/AppData/Local/Temp/BNZ.5cf0e04e38991ce4/chat.go" />
-        <option value="$PROJECT_DIR$/main.go" />
         <option value="$PROJECT_DIR$/view/chat/main.html" />
         <option value="$PROJECT_DIR$/args/pagearg.go" />
         <option value="$PROJECT_DIR$/view/chat/foot.html" />
@@ -102,6 +76,8 @@
         <option value="$PROJECT_DIR$/ctrl/user.go" />
         <option value="$PROJECT_DIR$/service/user.go" />
         <option value="$PROJECT_DIR$/ctrl/chat.go" />
+        <option value="$PROJECT_DIR$/main.go" />
+        <option value="$PROJECT_DIR$/ctrl/attach.go" />
       </list>
     </option>
   </component>
@@ -128,32 +104,7 @@
             <path>
               <item name="goIM" type="b2602c69:ProjectViewProjectNode" />
               <item name="goIM" type="462c0819:PsiDirectoryNode" />
-              <item name="args" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="goIM" type="b2602c69:ProjectViewProjectNode" />
-              <item name="goIM" type="462c0819:PsiDirectoryNode" />
               <item name="ctrl" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="goIM" type="b2602c69:ProjectViewProjectNode" />
-              <item name="goIM" type="462c0819:PsiDirectoryNode" />
-              <item name="model" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="goIM" type="b2602c69:ProjectViewProjectNode" />
-              <item name="goIM" type="462c0819:PsiDirectoryNode" />
-              <item name="service" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="goIM" type="b2602c69:ProjectViewProjectNode" />
-              <item name="goIM" type="462c0819:PsiDirectoryNode" />
-              <item name="util" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="goIM" type="b2602c69:ProjectViewProjectNode" />
-              <item name="goIM" type="462c0819:PsiDirectoryNode" />
-              <item name="view" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -170,7 +121,7 @@
     <property name="go.gopath.indexing.explicitly.defined" value="true" />
     <property name="go.import.settings.migrated" value="true" />
     <property name="go.sdk.automatically.set" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/args" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/view" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="nodejs_package_manager_path" value="npm" />
@@ -178,11 +129,11 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\CodeSpace\Go\src\goIM\view" />
       <recent name="D:\CodeSpace\Go\src\goIM\args" />
       <recent name="D:\CodeSpace\Go\src\goIM\ctrl" />
       <recent name="D:\CodeSpace\Go\src\goIM\service" />
       <recent name="D:\CodeSpace\Go\src\goIM\util" />
-      <recent name="D:\CodeSpace\Go\src\goIM\view" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="D:\CodeSpace\Go\src\goIM" />
@@ -229,13 +180,12 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1691" height="917" extended-state="6" />
-    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49936306" visible="true" weight="0.1665646" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49936306" visible="true" weight="0.1665646" />
       <window_info id="Favorites" order="1" sideWeight="0.50063694" side_tool="true" weight="0.16227801" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.25350317" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.4996938" visible="true" weight="0.2764331" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.4996938" weight="0.2764331" />
       <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.49908143" weight="0.32866243" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -252,25 +202,25 @@
       <window_info anchor="right" id="Structure" order="4" sideWeight="0.50063694" side_tool="true" weight="0.09001837" />
     </layout>
     <layout-to-restore>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.16227801" />
-      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info id="Favorites" order="2" side_tool="true" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49936306" visible="true" weight="0.1665646" />
+      <window_info id="Favorites" order="1" sideWeight="0.50063694" side_tool="true" weight="0.16227801" />
       <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.4996938" weight="0.32806325" />
-      <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.4996938" weight="0.5125165" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.25350317" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.4996938" visible="true" weight="0.2764331" />
+      <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.49908143" weight="0.32866243" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="bottom" id="TODO" order="6" weight="0.3299363" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Database Changes" order="8" />
-      <window_info anchor="bottom" id="Version Control" order="9" />
-      <window_info anchor="bottom" id="Terminal" order="10" weight="0.41633728" />
-      <window_info anchor="bottom" id="Event Log" order="11" sideWeight="0.5003062" side_tool="true" weight="0.3992095" />
+      <window_info anchor="bottom" id="Version Control" order="9" weight="0.3299363" />
+      <window_info anchor="bottom" id="Terminal" order="10" sideWeight="0.4996938" weight="0.34649682" />
+      <window_info anchor="bottom" id="Event Log" order="11" sideWeight="0.5003062" side_tool="true" weight="0.4853503" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="right" id="Database" order="3" />
+      <window_info anchor="right" id="Structure" order="4" sideWeight="0.50063694" side_tool="true" weight="0.09001837" />
     </layout-to-restore>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -281,7 +231,8 @@
     <MESSAGE value="GOIM-V0.1.2:接入聊天主页面" />
     <MESSAGE value="GOIM-V0.1.3: 显示好友列表和群" />
     <MESSAGE value="GOIM-V0.1.4：接入websocket并实现最基础的文字通讯" />
-    <option name="LAST_COMMIT_MESSAGE" value="GOIM-V0.1.4：接入websocket并实现最基础的文字通讯" />
+    <MESSAGE value="GOIM-V0.1.5：实现发送文字、表情包" />
+    <option name="LAST_COMMIT_MESSAGE" value="GOIM-V0.1.5：实现发送文字、表情包" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -296,55 +247,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://C:/Go/src/runtime/panic.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="337">
-          <caret line="719" selection-start-line="719" selection-end-line="719" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://C:/Go/src/net/http/server.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="23">
-          <caret line="1768" selection-start-line="1768" selection-end-line="1768" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/asset/js/util.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1503">
-          <caret line="74" column="36" lean-forward="true" selection-start-line="74" selection-start-column="36" selection-end-line="74" selection-end-column="36" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/AppData/Local/Temp/BNZ.5cf0c7cf38396029/login.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="373">
-          <caret line="65" column="24" lean-forward="true" selection-start-line="65" selection-start-column="24" selection-end-line="65" selection-end-column="42" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/AppData/Local/Temp/BNZ.5cf0d3783866fa5b/community.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="275">
-          <caret line="19" selection-start-line="19" selection-end-line="21" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/AppData/Local/Temp/BNZ.5cf0d2a83863cc54/contact.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="225">
-          <caret line="17" selection-start-line="17" selection-end-line="21" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/AppData/Local/Temp/BNZ.5cf0d518386d5167/contact.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1275">
-          <caret line="56" column="1" lean-forward="true" selection-end-line="56" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$USER_HOME$/AppData/Local/Temp/BNZ.5cf0d587386f032e/main.go">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="550">
@@ -504,13 +406,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/view/chat/foot.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="285">
-          <caret line="316" column="22" selection-start-line="316" selection-start-column="22" selection-end-line="316" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/args/pagearg.go">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1344">
@@ -522,13 +417,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="343">
           <caret line="7" selection-start-line="7" selection-end-line="7" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/main.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="62">
-          <caret line="21" column="55" lean-forward="true" selection-start-line="21" selection-start-column="55" selection-end-line="21" selection-end-column="55" />
         </state>
       </provider>
     </entry>
@@ -620,11 +508,61 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/ctrl/chat.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="245">
-          <caret line="143" lean-forward="true" selection-start-line="143" selection-end-line="143" />
+        <state relative-caret-position="-350">
+          <caret line="143" selection-start-line="143" selection-end-line="143" />
           <folding>
             <element signature="e#14#143#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/AppData/Local/Temp/BNZ.5cf14aad3a389ef2/main.go">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$USER_HOME$/AppData/Local/Temp/BNZ.5cf14ac33a38f61a/main.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="445">
+          <caret line="75" column="4" selection-start-line="75" selection-start-column="4" selection-end-line="75" selection-end-column="55" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ctrl/attach.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1568">
+          <caret line="15" column="1" lean-forward="true" selection-start-line="15" selection-start-column="1" selection-end-line="15" selection-end-column="1" />
+          <folding>
+            <element signature="e#14#100#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/AppData/Local/Temp/BNZ.5cf14af43a39b498/attach.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="150">
+          <caret line="15" column="1" lean-forward="true" selection-end-line="95" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/view/chat/foot.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-5900">
+          <caret line="14" column="20" lean-forward="true" selection-start-line="14" selection-start-column="20" selection-end-line="14" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mnt/15593174831298498081.jpg">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mnt/15593174922019727887.jpg">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mnt/15593175101427131847.jpg">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/main.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="93">
+          <caret line="34" column="57" selection-start-line="34" selection-start-column="57" selection-end-line="34" selection-end-column="57" />
         </state>
       </provider>
     </entry>

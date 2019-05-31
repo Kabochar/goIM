@@ -34,11 +34,13 @@ func main() {
 	http.HandleFunc("/contact/joincommunity", ctrl.JoinCommunity)
 	http.HandleFunc("/contact/addfriend", ctrl.Addfriend)
 	http.HandleFunc("/chat", ctrl.Chat)
+	http.HandleFunc("/attach/upload", ctrl.Upload)
 
 	// 提供静态资源使用
 	// http.Handle("/", http.FileServer(http.Dir("."))) // 全局设置，maingo可以访问
 	// 提供指定目录的静态文件支持
 	http.Handle("/asset/", http.FileServer(http.Dir(".")))
+	http.Handle("/mnt/", http.FileServer(http.Dir(".")))
 
 	// 查找并渲染模板
 	RegisterView()
