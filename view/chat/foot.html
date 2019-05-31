@@ -10,7 +10,7 @@
         })
     }
     function userId(){
-        return util.parseQuery("id")
+        return parseInt(util.parseQuery("id"))
     }
     var app=new Vue(
             {
@@ -259,14 +259,14 @@
                         console.log(user)
                         this.win = "single";
                         this.title = "和"+user.nickname+"聊天中";
-                        this.msgcontext.dstid = user.id;
+                        this.msgcontext.dstid = parseInt(user.id);
                         this.msgcontext.cmd = 10;
                     },
                     groupmsg:function(group){
 
                         this.win = "group";
                         this.title=group.name;
-                        this.msgcontext.dstid = group.id;
+                        this.msgcontext.dstid = parseInt(group.id);
                         this.msgcontext.cmd = 11;
                     },
                     loaduserinfo:function(userid,cb){
@@ -289,11 +289,11 @@
 
                     },
                     initwebsocket:function(){
-                        var url="ws://"+location.host+"/chat?id="+userId()+"&token=" + util.parseQuery("token");
+                        var url="ws://"+location.host+"/chat?id="+userId()+"&token=" +util.parseQuery("token");
                         this.webSocket=new WebSocket(url);
                         //消息处理
                         this.webSocket.onmessage = function(evt){
-                            //{"data":"}",...} 判断是不是 json 数据
+                            //{"data":"}",...}
                             if(evt.data.indexOf("}")>-1){
                                 this.onmessage(JSON.parse(evt.data));
                             }else{

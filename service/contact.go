@@ -21,7 +21,7 @@ func (service *ContactService) AddFriend(
 	tmp := model.Contact{}
 	//查询是否已经是好友
 	// 条件的链式操作
-	DBEngin.Where("ownerid = ?", userid).
+	DbEngin.Where("ownerid = ?", userid).
 		And("dstid = ?", dstid).
 		And("cate = ?", model.CONCAT_CATE_USER).
 		Get(&tmp)
@@ -32,7 +32,7 @@ func (service *ContactService) AddFriend(
 		return errors.New("该用户已经被添加过啦")
 	}
 	//事务,
-	session := DBEngin.NewSession()
+	session := DbEngin.NewSession()
 	session.Begin()
 	//插自己的
 	_, e2 := session.InsertOne(model.Contact{
@@ -68,7 +68,7 @@ func (service *ContactService) SearchComunity(userId int64) []model.Community {
 	conconts := make([]model.Contact, 0)
 	comIds := make([]int64, 0)
 
-	DBEngin.Where("ownerid = ? and cate = ?", userId, model.CONCAT_CATE_COMUNITY).Find(&conconts)
+	DbEngin.Where("ownerid = ? and cate = ?", userId, model.CONCAT_CATE_COMUNITY).Find(&conconts)
 	for _, v := range conconts {
 		comIds = append(comIds, v.Dstobj)
 	}
@@ -76,7 +76,7 @@ func (service *ContactService) SearchComunity(userId int64) []model.Community {
 	if len(comIds) == 0 {
 		return coms
 	}
-	DBEngin.In("id", comIds).Find(&coms)
+	DbEngin.In("id", comIds).Find(&coms)
 	return coms
 }
 
@@ -87,10 +87,10 @@ func (service *ContactService) JoinCommunity(userId, comId int64) error {
 		Dstobj:  comId,
 		Cate:    model.CONCAT_CATE_COMUNITY,
 	}
-	DBEngin.Get(&cot)
+	DbEngin.Get(&cot)
 	if cot.Id == 0 {
 		cot.Createat = time.Now()
-		_, err := DBEngin.InsertOne(cot)
+		_, err := DbEngin.InsertOne(cot)
 		return err
 	} else {
 		return nil
@@ -111,14 +111,14 @@ func (service *ContactService) CreateCommunity(comm model.Community) (ret model.
 	com := model.Community{
 		Ownerid: comm.Ownerid,
 	}
-	num, err := DBEngin.Count(&com)
+	num, err := DbEngin.Count(&com)
 
 	if num > 5 {
 		err = errors.New("一个用户最多只能创见5个群")
 		return com, err
 	} else {
 		comm.Createat = time.Now()
-		session := DBEngin.NewSession()
+		session := DbEngin.NewSession()
 		session.Begin()
 		_, err = session.InsertOne(&comm)
 		if err != nil {
@@ -145,7 +145,7 @@ func (service *ContactService) CreateCommunity(comm model.Community) (ret model.
 func (service *ContactService) SearchFriend(userId int64) []model.User {
 	conconts := make([]model.Contact, 0)
 	objIds := make([]int64, 0)
-	DBEngin.Where("ownerid = ? and cate = ?", userId, model.CONCAT_CATE_USER).Find(&conconts)
+	DbEngin.Where("ownerid = ? and cate = ?", userId, model.CONCAT_CATE_USER).Find(&conconts)
 	for _, v := range conconts {
 		objIds = append(objIds, v.Dstobj)
 	}
@@ -153,6 +153,6 @@ func (service *ContactService) SearchFriend(userId int64) []model.User {
 	if len(objIds) == 0 {
 		return coms
 	}
-	DBEngin.In("id", objIds).Find(&coms)
+	DbEngin.In("id", objIds).Find(&coms)
 	return coms
 }
