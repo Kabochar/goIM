@@ -22,7 +22,6 @@ func MD5Encode(data string) string {
 func ValidatePasswd(plainpwd, salt, passwd string) bool {
 	return Md5Encode(plainpwd+salt) == passwd
 }
-
 func MakePasswd(plainpwd, salt string) string {
 	return Md5Encode(plainpwd + salt)
 }

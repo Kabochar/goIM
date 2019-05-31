@@ -12,22 +12,22 @@ import (
 var DBEngin *xorm.Engine
 
 func init() {
-	drivername := "mysql"
-	Dsname := "root:mysql123@(127.0.0.1:3306)/chat?charset=utf8"
+	drivename := "mysql"
+	DsName := "root:mysql123@(127.0.0.1:3306)/chat?charset=utf8"
 	err := errors.New("")
-	DBEngin, err = xorm.NewEngine(drivername, Dsname)
-	if err != nil && err.Error() != "" {
+	DBEngin, err = xorm.NewEngine(drivename, DsName)
+	if nil != err && "" != err.Error() {
 		log.Fatal(err.Error())
 	}
-	// 是否显示 SQL 语句
+	//是否显示SQL语句
 	DBEngin.ShowSQL(true)
-	// 数据库最大链接数
+	//数据库最大打开的连接数B
 	DBEngin.SetMaxOpenConns(2)
 
-	// 自动user
-	err = DBEngin.Sync2(new(model.User))
-	if err != nil {
-		log.Fatal(err.Error())
-	}
-	fmt.Println("init DataBase OK...")
+	//自动User
+	DBEngin.Sync2(new(model.User),
+		new(model.Contact),
+		new(model.Community))
+	//DbEngin = dbengin
+	fmt.Println("init data base ok")
 }

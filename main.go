@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"goIM/ctrl"
 	"html/template"
 	"log"
@@ -21,12 +22,17 @@ func RegisterView() {
 				tpl.ExecuteTemplate(writer, tplname, nil)
 			})
 	}
+	fmt.Println("Templates Rendering Succ!")
 }
 
 func main() {
 	// 绑定请求和处理函数
 	http.HandleFunc("/user/login", ctrl.UserLogin)
 	http.HandleFunc("/user/register", ctrl.UserRegister)
+	http.HandleFunc("/contact/loadcommunity", ctrl.LoadCommunity)
+	http.HandleFunc("/contact/loadfriend", ctrl.LoadFriend)
+	http.HandleFunc("/contact/joincommunity", ctrl.JoinCommunity)
+	http.HandleFunc("/contact/addfriend", ctrl.Addfriend)
 
 	// 提供静态资源使用
 	// http.Handle("/", http.FileServer(http.Dir("."))) // 全局设置，maingo可以访问
