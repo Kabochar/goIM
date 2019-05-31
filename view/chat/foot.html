@@ -105,12 +105,10 @@
                     if(!!user){
                         this.profile.avatar = user.avatar;
                         this.profile.nickname = user.nickname;
-
                         this.profile.memo = user.memo;
-                        var url="ws://"+location.host+"/chat?id="+userId()+"&token=" +user.token;
-                        this.webSocket=new WebSocket(url);
-                        this.initwebsocket()
                     }
+
+                    this.initwebsocket()
 
                 },
                 mounted:function(){
@@ -275,7 +273,7 @@
                         userid = ""+userid;
                         var userinfo = this.usermap[userid];
                         if(!userinfo){
-                            post("user/find",{id:userid},function(res){
+                            post("user/find",{id:parseInt(userid)},function(res){
                                 cb(res.data);
                                 this.usermap[userid] = res.data;
                             }.bind(this))
@@ -291,15 +289,28 @@
 
                     },
                     initwebsocket:function(){
+                        var url="ws://"+location.host+"/chat?id="+userId()+"&token=" + util.parseQuery("token");
+                        this.webSocket=new WebSocket(url);
+                        //消息处理
                         this.webSocket.onmessage = function(evt){
-                            this.onmessage(JSON.parse(evt.data));
+                            //{"data":"}",...} 判断是不是 json 数据
+                            if(evt.data.indexOf("}")>-1){
+                                this.onmessage(JSON.parse(evt.data));
+                            }else{
+                                console.log("recv<=="+evt.data)
+                            }
                         }.bind(this)
+                        //关闭回调
                         this.webSocket.onclose=function (evt) {
                             console.log(evt.data)
                         }
+                        //出错回调
                         this.webSocket.onerror=function (evt) {
                             console.log(evt.data)
                         }
+                        /*{
+                            this.webSocket.send()
+                        }*/
                     },
                     sendmsg:function(){
 

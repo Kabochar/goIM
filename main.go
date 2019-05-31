@@ -33,6 +33,7 @@ func main() {
 	http.HandleFunc("/contact/loadfriend", ctrl.LoadFriend)
 	http.HandleFunc("/contact/joincommunity", ctrl.JoinCommunity)
 	http.HandleFunc("/contact/addfriend", ctrl.Addfriend)
+	http.HandleFunc("/chat", ctrl.Chat)
 
 	// 提供静态资源使用
 	// http.Handle("/", http.FileServer(http.Dir("."))) // 全局设置，maingo可以访问
