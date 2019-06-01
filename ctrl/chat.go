@@ -6,6 +6,7 @@ import (
 	"github.com/gorilla/websocket"
 	"gopkg.in/fatih/set.v0"
 	"log"
+	"net"
 	"net/http"
 	"strconv"
 	"sync"
@@ -158,6 +159,83 @@ func recvproc(node *Node) {
 		dispatch(data)
 		fmt.Printf("recv <= %s \n", data)
 	}
+}
+
+// todo 消息广播到局域网
+// 初始化开启两个协程
+/*
+基于UDP的分布式应用
+开启ws接收协程recvproc/ws发送协程sendproc
+开启udp接收协程udprecvproc/udp发送协程udpsendproc
+websocket收到消息->broadMsg广播到局域网
+udp接收到收到消息->dispatch发送给dstid
+自己是局域网一份子，所以也能接收到消息
+*/
+func init() {
+	go udpsendproc()
+	go udprecvproc()
+}
+
+//用来存放发送的要广播的数据
+var udpsendchan chan []byte = make(chan []byte, 1024)
+
+//todo 将消息广播到局域网
+func broadMsg(data []byte) {
+	udpsendchan <- data
+}
+
+//todo 完成udp数据的发送协程
+func udpsendproc() {
+	log.Println("start udpsendproc")
+	//todo 使用udp协议拨号
+	con, err := net.DialUDP("udp", nil,
+		&net.UDPAddr{
+			IP:   net.IPv4(192, 168, 0, 255),
+			Port: 3000,
+		})
+	defer con.Close()
+	if err != nil {
+		log.Println(err.Error())
+		return
+	}
+	//todo 通过的到的con发送消息
+	//con.Write()
+	for {
+		select {
+		case data := <-udpsendchan:
+			_, err = con.Write(data)
+			if err != nil {
+				log.Println(err.Error())
+				return
+			}
+		}
+	}
+}
+
+//todo 完成upd接收并处理功能
+func udprecvproc() {
+	log.Println("start udprecvproc")
+	//todo 监听udp广播端口
+	con, err := net.ListenUDP("udp", &net.UDPAddr{
+		IP:   net.IPv4zero,
+		Port: 3000,
+	})
+	defer con.Close()
+	if err != nil {
+		log.Println(err.Error())
+	}
+	//TODO 处理端口发过来的数据
+	for {
+		var buf [512]byte
+		n, err := con.Read(buf[0:])
+		if err != nil {
+			log.Println(err.Error())
+			return
+		}
+		//直接数据处理
+		dispatch(buf[0:n])
+	}
+	log.Println("stop updrecvproc")
 }
 
 //后端调度逻辑处理
