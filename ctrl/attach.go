@@ -2,6 +2,7 @@ package ctrl
 
 import (
 	"fmt"
+	"github.com/aliyun/aliyun-oss-go-sdk/oss"
 	"goIM/util"
 	"io"
 	"math/rand"
@@ -79,19 +80,53 @@ const (
 func UploadOss(writer http.ResponseWriter,
 	request *http.Request) {
 	//todo 获得上传的文件
+	srcfile, head, err := request.FormFile("file")
+	if err != nil {
+		util.RespFail(writer, err.Error())
+		return
+	}
 
 	//todo 获得文件后缀.png/.mp3
 
+	suffix := ".mp3"
+	//如果前端文件名称包含后缀 xx.xx.png
+	ofilename := head.Filename
+	tmp := strings.Split(ofilename, ".")
+	if len(tmp) > 1 {
+		suffix = "." + tmp[len(tmp)-1]
+	}
+	//如果前端指定filetype
+	//formdata.append("filetype",".png")
+	filetype := request.FormValue("filetype")
+	if len(filetype) > 0 {
+		suffix = filetype
+	}
+
 	//todo 初始化ossclient
-
+	client, err := oss.New(EndPoint, AccessKeyId, AccessKeySecret)
+	if err != nil {
+		util.RespFail(writer, err.Error())
+		return
+	}
 	//todo 获得bucket
-
+	bucket, err := client.Bucket(Bucket)
+	if err != nil {
+		util.RespFail(writer, err.Error())
+		return
+	}
 	//todo 设置文件名称
-
+	//time.Now().Unix()
+	filename := fmt.Sprintf("mnt/%d%04d%s",
+		time.Now().Unix(), rand.Int31(),
+		suffix)
 	//todo 通过bucket上传
-
+	err = bucket.PutObject(filename, srcfile)
+	if err != nil {
+		util.RespFail(writer, err.Error())
+		return
+	}
 	//todo 获得url地址
-	url := ""
+	url := "http://" + Bucket + "." + EndPoint + "/" + filename
 
 	//todo 响应到前端
 	util.RespOk(writer, url, "")
