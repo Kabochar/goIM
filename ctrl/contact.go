@@ -31,6 +31,8 @@ func JoinCommunity(w http.ResponseWriter, req *http.Request) {
 	//如果这个用的上,那么可以直接
 	util.Bind(req, &arg)
 	err := contactService.JoinCommunity(arg.Userid, arg.Dstid)
+	// todo 刷新用户的群组信息
+	AddGroupId(arg.Userid, arg.Dstid)
 	if err != nil {
 		util.RespFail(w, err.Error())
 	} else {

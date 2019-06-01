@@ -141,6 +141,19 @@ func (service *ContactService) CreateCommunity(comm model.Community) (ret model.
 	}
 }
 
+// 获取用户全部群ID
+func (service *ContactService) SearchComunityIds(userId int64) (comIds []int64) {
+	//todo 获取用户全部群ID
+	conconts := make([]model.Contact, 0)
+	comIds = make([]int64, 0)
+
+	DbEngin.Where("ownerid = ? and cate = ?", userId, model.CONCAT_CATE_COMUNITY).Find(&conconts)
+	for _, v := range conconts {
+		comIds = append(comIds, v.Dstobj)
+	}
+	return comIds
+}
+
 //查找好友
 func (service *ContactService) SearchFriend(userId int64) []model.User {
 	conconts := make([]model.Contact, 0)
