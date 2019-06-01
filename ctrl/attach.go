@@ -67,7 +67,10 @@ func UploadLocal(writer http.ResponseWriter,
 	util.RespOk(writer, url, "")
 }
 
+// ali oss 具体参数
 //即将删掉,定期更新
+// 这里完成的是，性能优化
+// 使用 ali
 const (
 	AccessKeyId     = "5p2RZKnrUanMuQw9"
 	AccessKeySecret = "bsNmjU8Au08axedV40TRPCS5XIFAkK"
@@ -76,7 +79,9 @@ const (
 )
 
 //权限设置为公共读状态
-//需要安装
+//todo 需要安装 github.com/aliyun/aliyun-oss-go-sdk/oss
+// todo 性能优化：1锁的频次，2json编码次数，3静态资源分离
+// 性能优化，
 func UploadOss(writer http.ResponseWriter,
 	request *http.Request) {
 	//todo 获得上传的文件
